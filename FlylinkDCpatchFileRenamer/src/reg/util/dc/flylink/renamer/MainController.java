@@ -46,7 +46,7 @@ public class MainController
         public void actionPerformed(ActionEvent e)
         {
             Dbase db = new Dbase(null);
-            if(!db.tryToConnect()){
+            if(!db.connect()){
                 view.appendListFilesBeforeLine(0, "*[CONNECTED FAILED] place program into flylinkdc folder"
                         + " or try close another program (if used exclusive lock)\n\n");
                 return;
@@ -93,6 +93,9 @@ public class MainController
                 logger.log(Level.SEVERE, ex.getMessage());
                 System.out.println(ex.getMessage());
             }
+            finally{
+                db.close();
+            }
         }
-    }      
+    }
 }

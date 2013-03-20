@@ -18,9 +18,10 @@ package reg.util.dc.flylink.renamer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
 import java.util.logging.*;
-import org.sqlite.SQLiteConfig;
 
 public class Dbase
 {
@@ -50,80 +51,89 @@ public class Dbase
     }
     
     /**
-     * Connects to the database, if this has not been done before.
-     * @return false - if already connected; true - if new connect to DB.
-     * @throws SQLException communication errors
+     * 
+     * Таблица fly_path
+     * @param from
+     * @param to
+     * @return 
      */
-    protected boolean connect() throws SQLException
+    protected boolean renamePath(String from, String to)
     {
-        if(db != null && !db.isClosed()){
+        try{
+            PreparedStatement pstmt = db.prepareStatement("UPDATE fly_path SET name = ? WHERE  name = ?");
+            pstmt.setString(1, from);
+            pstmt.setString(1, to);
+            if(pstmt.executeUpdate() > 0){
+                return true;
+            }
+        }
+        catch(Exception e){
+            logger.log(Level.SEVERE, "cannot renamed folder '"+ from +"' to '" + to + "'", e);
+        }
+        return false;
+    }
+    
+    /**
+     * 
+     * Таблица fly_file - без индекса! Либо модифицируем структуру таблицы, либо мучаемся с уточнением.
+     * @param from
+     * @param to
+     * @return 
+     */
+    protected boolean renameFile(String from, String to)
+    {
+        return false;
+    }
+    
+    /**
+     * @param from -> trimmed [0] - path, [1] - file
+     * @param to   -> trimmed [0] - path, [1] - file
+     * @return 
+     */
+    public boolean renamePathOrFile(String[] from, String[] to)
+    {
+        if(!connect()){
             return false;
+        }
+        if(from[1].length() > 0){
+            return renameFile(from[1], to[1]);
+        }
+        return renamePath(from[0], to[0]);
+    }
+    
+    public boolean connect()
+    {
+        try{
+            if(db != null && !db.isClosed()){
+                return true;
+            }
+        }
+        catch(Exception e){}
+        
+        try{
+            Class.forName("org.sqlite.JDBC");
+            db = DriverManager.getConnection("jdbc:sqlite:" + dbName);
+            return true;
+        }
+        catch(Exception e){
+            logger.log(Level.SEVERE, "connected failed", e);
+        }
+        return false;
+    }
+    
+    public boolean close()
+    {
+        if(db == null){
+            return true;
         }
         
         try{
-            //Class loading and initializing in the DriverManager
-            Class.forName("org.sqlite.JDBC");
-            
-            SQLiteConfig config = new SQLiteConfig();
-            config.setReadOnly(true);
-            db = DriverManager.getConnection("jdbc:sqlite:" + dbName, config.toProperties());
+            db.close();
+            db = null;
             return true;
         }
-        catch(Exception e){
-            throw new SQLException("is not connect to DB", e);
-        }
-    }
-    
-    /**
-     * Close the active connection
-     * @return true - successfully closed; false - the connection was closed previously or an error has occurred
-     */
-    protected boolean close()
-    {
-        if(db != null){
-            try{
-                db.close();
-                db = null;
-                return true;
-            }
-            catch(SQLException e){
-                logger.log(Level.WARNING, "problem close connection", e);
-            }
-        }
-        return false;
-    }
-    
-    protected boolean renamePath()
-    {
-        return false;
-    }
-    
-    protected boolean renameFile()
-    {
-        return false;
-    }
-    
-    public boolean renamePathOrFile(String[] from, String[] to)
-    {
-        return false;
-    }
-    
-    
-    /**
-     * Checking connectivity
-     * @return 
-     */
-    public boolean tryToConnect()
-    {
-        try{
-            connect();
-            return true;
-        }
-        catch(Exception e){
-            logger.log(Level.WARNING, "cannot connect to '" + dbName + "'", e);
-        }
-        finally{
-//            close();
+        catch(SQLException e){
+            logger.log(Level.WARNING, "problem close connection", e);
         }
         return false;
     }
