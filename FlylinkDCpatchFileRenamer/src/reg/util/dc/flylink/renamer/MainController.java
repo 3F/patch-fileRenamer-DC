@@ -45,6 +45,14 @@ public class MainController
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            Dbase db = new Dbase(null);
+            if(db.tryToConnect()){
+                System.out.println("connected ok");
+            }
+            else{
+                System.out.println("connected failed");
+            }
+            
             try{
                 int count = view.getCountListFilesLines();
                 for(int i = 0; i < count; i++){
@@ -59,9 +67,6 @@ public class MainController
                         view.appendListFilesBeforeLine(i, "[ERROR]: ");
                     }
                 }
-                
-                //System.out.println(view.getLineFromListFiles(4));
-                
             }
             catch(IndexOutOfBoundsException ex){
                 logger.log(Level.SEVERE, ex.getMessage());

@@ -25,11 +25,7 @@ public class IllegalOperationException extends Exception
     /**
      * Cannot read configuration
      */
-    public final static int EXIT_CODE_CONFIG_READ_ERROR     = 100;
-    /**
-     * arguments is null
-     */
-    public final static int EXIT_CODE_CONTROLLER_ARGS_NULL  = 101;    
+    public final static int EXIT_CODE_CONFIG_READ_ERROR     = 100;  
     /**
      * file not found or no read access
      */

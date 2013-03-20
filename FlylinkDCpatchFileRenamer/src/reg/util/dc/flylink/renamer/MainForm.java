@@ -25,6 +25,8 @@ import javax.swing.text.BadLocationException;
  */
 public class MainForm extends javax.swing.JFrame
 {
+    private boolean firstClickedOnListFiles = false;
+    
     /**
      * Creates new form MainForm
      */
@@ -116,10 +118,22 @@ public class MainForm extends javax.swing.JFrame
         btnRenameInDb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Патч переименования путей для FlylinkDC++");
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
-        listFiles.setText("f:\\test\\dir 1\\ > a:\\dfsd\\sdg\nD:\\Проверка папка1    > F:/test1/tesy1/dfdgf/\nok... D:\\Ghj\\\nok... D:\\Ghj\\   > F:/test1/tesy1/dfdgf/\nF:/test1/tesy1/dfdgf/\ng:/ddsg/\na:\\dfsd\\sdg>a:\\dfsd\\sdg");
+        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n###\nПримеры:\n#\n\nДиректории:\n# D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n# D:\\folder 2             > E:\\Movies\n\nФайлы:\n# E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n# e:\\dir1\\175.png     > f:\\bigcat.png\n\nПометки о выполнении:\n[OK]:         Текущая строка успешно выполнена\n[ERROR]:  Неправильный формат текущей строки");
+        listFiles.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                listFilesMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                listFilesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listFiles);
 
         btnRenameInDb.setText("Переимновать в БД");
@@ -130,7 +144,7 @@ public class MainForm extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRenameInDb)
-                .addGap(0, 267, Short.MAX_VALUE))
+                .addGap(0, 626, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,11 +163,25 @@ public class MainForm extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void listFilesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_listFilesMouseClicked
+    {//GEN-HEADEREND:event_listFilesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listFilesMouseClicked
+
+    private void listFilesMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_listFilesMouseReleased
+    {//GEN-HEADEREND:event_listFilesMouseReleased
+        // TODO add your handling code here:
+        if(!firstClickedOnListFiles){
+            listFiles.setText("");
+            firstClickedOnListFiles = true;
+        }        
+    }//GEN-LAST:event_listFilesMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRenameInDb;
