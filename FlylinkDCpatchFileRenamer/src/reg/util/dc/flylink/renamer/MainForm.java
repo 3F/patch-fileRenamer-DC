@@ -17,6 +17,7 @@
 package reg.util.dc.flylink.renamer;
 
 import java.awt.event.ActionListener;
+import javax.swing.text.BadLocationException;
 
 /**
  *
@@ -58,7 +59,47 @@ public class MainForm extends javax.swing.JFrame
     protected void listnerRenameInDb(ActionListener l)
     {
         btnRenameInDb.addActionListener(l);
-    }    
+    }
+    
+    /**
+     * Text line by number
+     * @param n line number
+     * @return
+     * @throws IndexOutOfBoundsException 
+     */
+    public String getLineFromListFiles(int n) throws IndexOutOfBoundsException
+    {
+        try{
+            int offsetStart = listFiles.getLineStartOffset(n);
+            int offsetEnd   = listFiles.getLineEndOffset(n);
+            return listFiles.getText(offsetStart, offsetEnd - offsetStart);
+        }
+        catch(BadLocationException e){
+            throw new IndexOutOfBoundsException("value (" + n + ") out of range. " + e.getMessage());
+        }
+    }
+    
+    public int getCountListFilesLines()
+    {
+        return listFiles.getLineCount();
+    }
+    
+    /**
+     * Добавляет текст в начало указанной строки.
+     * @param n line number
+     * @param text
+     */
+    public void appendListFilesBeforeLine(int n, String text) throws IndexOutOfBoundsException
+    {
+        try{
+            int offset = listFiles.getLineStartOffset(n);         
+            listFiles.replaceRange(text, offset, offset);
+        }
+        catch(BadLocationException e){
+            throw new IndexOutOfBoundsException("value (" + n + ") out of range. " + e.getMessage());
+        }        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this
@@ -70,16 +111,16 @@ public class MainForm extends javax.swing.JFrame
     {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        listFiles = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         btnRenameInDb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("ok...  from : to\nok...  from : to\nok...  from : to\nok...  from : to\nfrom : to");
-        jScrollPane1.setViewportView(jTextArea1);
+        listFiles.setColumns(20);
+        listFiles.setRows(5);
+        listFiles.setText("ok... 1 from : to\nok... 2 from : to\nok... 3 from : to\nok... 4 from : to\n5 from : to");
+        jScrollPane1.setViewportView(listFiles);
 
         btnRenameInDb.setText("Переимновать в БД");
 
@@ -118,6 +159,6 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JButton btnRenameInDb;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea listFiles;
     // End of variables declaration//GEN-END:variables
 }

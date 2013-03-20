@@ -25,10 +25,13 @@ import java.awt.event.ActionListener;
  */
 public class MainController
 {
+    private MainForm view = null;
+    
     public MainController(MainForm frm)
     {
-        frm.listnerRenameInDb(new actionRenameInDb());
-        frm.setVisible(true);
+        view = frm;
+        view.listnerRenameInDb(new actionRenameInDb());
+        view.setVisible(true);
     }
     
     /**
@@ -39,7 +42,13 @@ public class MainController
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println("test");
+            try{
+                //System.out.println(view.getLineFromListFiles(4));
+                view.appendListFilesBeforeLine(3, "---> ");
+            }
+            catch(IndexOutOfBoundsException ex){
+                System.out.println(ex.getMessage());
+            }
         }
     }      
 }

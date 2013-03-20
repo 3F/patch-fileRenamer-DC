@@ -45,11 +45,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="listFiles">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="ok...  from : to&#xa;ok...  from : to&#xa;ok...  from : to&#xa;ok...  from : to&#xa;from : to"/>
+            <Property name="text" type="java.lang.String" value="ok... 1 from : to&#xa;ok... 2 from : to&#xa;ok... 3 from : to&#xa;ok... 4 from : to&#xa;5 from : to"/>
           </Properties>
         </Component>
       </SubComponents>
