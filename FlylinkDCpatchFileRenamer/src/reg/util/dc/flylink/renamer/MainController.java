@@ -46,26 +46,47 @@ public class MainController
         public void actionPerformed(ActionEvent e)
         {
             Dbase db = new Dbase(null);
-            if(db.tryToConnect()){
-                System.out.println("connected ok");
-            }
-            else{
-                System.out.println("connected failed");
-            }
+            if(!db.tryToConnect()){
+                view.appendListFilesBeforeLine(0, "*[CONNECTED FAILED] place program into flylinkdc folder"
+                        + " or try close another program (if used exclusive lock)\n\n");
+                return;
+            }            
             
+            String[] path, renFrom, renTo;
             try{
                 int count = view.getCountListFilesLines();
                 for(int i = 0; i < count; i++){
                     String text = view.getLineFromListFiles(i);
-                    if(FilesGetting.verifyLine(text)){
-                        String[] paths = FilesGetting.get2Path(text);
-                        
-                        System.out.println(paths[0] + " -> " + paths[1]);
-                        view.appendListFilesBeforeLine(i, "[OK]: ");
+                    
+                    if(!FilesGetting.verifyLine(text)){
+                        view.appendListFilesBeforeLine(i, "[ERROR-FORMAT]: ");
+                        continue;
                     }
-                    else{
-                        view.appendListFilesBeforeLine(i, "[ERROR]: ");
+                    
+                    path = FilesGetting.get2Path(text);
+                    try{
+                        renFrom = FilesGetting.splitPath(path[0]);
+                        renTo   = FilesGetting.splitPath(path[1]);
                     }
+                    catch(Exception ex){
+                        view.appendListFilesBeforeLine(i, "[ERROR-PARSE]: ");
+                        continue;
+                    }
+                    
+                    //Связи переименовния должны быть только: каталог-каталог, файл-файл
+                    if((renFrom[1].length() < 1 && renTo[1].length() > 0)
+                            ||
+                       (renFrom[1].length() > 0 && renTo[1].length() < 1)
+                      ){
+                        view.appendListFilesBeforeLine(i, "[ERROR-DIFF]: ");
+                        continue;
+                    }
+                    
+                    if(!db.renamePathOrFile(renFrom, renTo)){
+                        view.appendListFilesBeforeLine(i, "[ERROR-DB]: ");
+                        continue;
+                    }
+                    view.appendListFilesBeforeLine(i, "[OK]: ");
                 }
             }
             catch(IndexOutOfBoundsException ex){

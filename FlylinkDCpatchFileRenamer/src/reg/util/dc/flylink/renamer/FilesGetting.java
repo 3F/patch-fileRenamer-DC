@@ -19,12 +19,13 @@ package reg.util.dc.flylink.renamer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author reg
- */
 public class FilesGetting
 {
+    /**
+     * Проверка формата строки
+     * @param text
+     * @return 
+     */
     public static boolean verifyLine(String text)
     {
         // D:\path, E:/path : D:\path, E:/path ...
@@ -32,11 +33,33 @@ public class FilesGetting
         return pat.matcher(text).find();
     }
     
+    /**
+     * Получить пути из строки
+     * @param text
+     * @return 
+     */
     public static String[] get2Path(String text)
     {
         Pattern pat = Pattern.compile("[\\r\\n]", Pattern.UNICODE_CASE);
         text = pat.matcher(text).replaceAll("");
         String[] splited = text.split(">");
         return new String[]{splited[0].trim().toLowerCase(), splited[1].trim().toLowerCase()};
+    }
+    
+    /**
+     * Получение частей из пути (Путь к директории/Имя файла)
+     * @param path Абсолютный путь
+     * @return [0]-> Путь [1] -> файл (пустое значение если передан только путь)
+     * @throws Exception 
+     */
+    public static String[] splitPath(String path) throws Exception
+    {
+        Pattern pat = Pattern.compile("^(.*[\\\\/])(.*)$", Pattern.UNICODE_CASE);
+        Matcher m   = pat.matcher(path.trim());
+        
+        if(m.matches()){
+            return new String[]{m.group(1).replace("/", "\\"), m.group(2).trim()};
+        }
+        throw new Exception("parse of path error: " + path);
     }
 }

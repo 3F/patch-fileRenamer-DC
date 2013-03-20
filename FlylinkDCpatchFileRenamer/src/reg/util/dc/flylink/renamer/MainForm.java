@@ -122,7 +122,7 @@ public class MainForm extends javax.swing.JFrame
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
-        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n###\nПримеры:\n#\n\nДиректории:\n# D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n# D:\\folder 2             > E:\\Movies\n\nФайлы:\n# E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n# e:\\dir1\\175.png     > f:\\bigcat.png\n\nПометки о выполнении:\n[OK]:         Текущая строка успешно выполнена\n[ERROR]:  Неправильный формат текущей строки");
+        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n\n#Примеры:\n\n  Директории:\n     # D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n     # D:/folder 2/             > E:/Movies/\n\n  Файлы:\n    # E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n    # e:/dir1/175.png     > f:/bigcat.png\n    # e:\\dir1\\header       > f:\\header.cfg\n\nПометки о выполнении:\n   [OK]:         Успешно выполнено текущая строка\n   [ERROR-???]:  Неправильный формат текущей строки");
         listFiles.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseReleased(java.awt.event.MouseEvent evt)

@@ -93,6 +93,22 @@ public class Dbase
         return false;
     }
     
+    protected boolean renamePath()
+    {
+        return false;
+    }
+    
+    protected boolean renameFile()
+    {
+        return false;
+    }
+    
+    public boolean renamePathOrFile(String[] from, String[] to)
+    {
+        return false;
+    }
+    
+    
     /**
      * Checking connectivity
      * @return 
