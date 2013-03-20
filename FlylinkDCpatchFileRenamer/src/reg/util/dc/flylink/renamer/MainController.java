@@ -18,6 +18,8 @@ package reg.util.dc.flylink.renamer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +27,8 @@ import java.awt.event.ActionListener;
  */
 public class MainController
 {
-    private MainForm view = null;
+    private MainForm view               = null;
+    private final static Logger logger  = Logger.getLogger(FilesRenamer.class.getPackage().getName());
     
     public MainController(MainForm frm)
     {
@@ -43,10 +46,25 @@ public class MainController
         public void actionPerformed(ActionEvent e)
         {
             try{
+                int count = view.getCountListFilesLines();
+                for(int i = 0; i < count; i++){
+                    String text = view.getLineFromListFiles(i);
+                    if(FilesGetting.verifyLine(text)){
+                        String[] paths = FilesGetting.get2Path(text);
+                        
+                        System.out.println(paths[0] + " -> " + paths[1]);
+                        view.appendListFilesBeforeLine(i, "[OK]: ");
+                    }
+                    else{
+                        view.appendListFilesBeforeLine(i, "[ERROR]: ");
+                    }
+                }
+                
                 //System.out.println(view.getLineFromListFiles(4));
-                view.appendListFilesBeforeLine(3, "---> ");
+                
             }
             catch(IndexOutOfBoundsException ex){
+                logger.log(Level.SEVERE, ex.getMessage());
                 System.out.println(ex.getMessage());
             }
         }

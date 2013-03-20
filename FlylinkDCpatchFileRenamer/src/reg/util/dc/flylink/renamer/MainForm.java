@@ -119,7 +119,7 @@ public class MainForm extends javax.swing.JFrame
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
-        listFiles.setText("ok... 1 from : to\nok... 2 from : to\nok... 3 from : to\nok... 4 from : to\n5 from : to");
+        listFiles.setText("f:\\test\\dir 1\\ > a:\\dfsd\\sdg\nD:\\Проверка папка1    > F:/test1/tesy1/dfdgf/\nok... D:\\Ghj\\\nok... D:\\Ghj\\   > F:/test1/tesy1/dfdgf/\nF:/test1/tesy1/dfdgf/\ng:/ddsg/\na:\\dfsd\\sdg>a:\\dfsd\\sdg");
         jScrollPane1.setViewportView(listFiles);
 
         btnRenameInDb.setText("Переимновать в БД");

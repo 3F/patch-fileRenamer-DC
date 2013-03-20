@@ -16,11 +16,27 @@
 
 package reg.util.dc.flylink.renamer;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author reg
  */
 public class FilesGetting
 {
+    public static boolean verifyLine(String text)
+    {
+        // D:\path, E:/path : D:\path, E:/path ...
+        Pattern pat = Pattern.compile("^\\s*\\S:[\\\\/][^>]+>\\s*\\S:[\\\\/][^$]+$", Pattern.UNICODE_CASE);
+        return pat.matcher(text).find();
+    }
     
+    public static String[] get2Path(String text)
+    {
+        Pattern pat = Pattern.compile("[\\r\\n]", Pattern.UNICODE_CASE);
+        text = pat.matcher(text).replaceAll("");
+        String[] splited = text.split(">");
+        return new String[]{splited[0].trim().toLowerCase(), splited[1].trim().toLowerCase()};
+    }
 }
