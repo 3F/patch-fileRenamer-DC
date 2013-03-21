@@ -60,10 +60,11 @@ public class Dbase
     protected boolean renamePath(String from, String to)
     {
         try{
-            PreparedStatement pstmt = db.prepareStatement("UPDATE fly_path SET name = ? WHERE  name = ?");
-            pstmt.setString(1, from);
+            PreparedStatement pstmt = db.prepareStatement("UPDATE main.fly_path SET name = ? WHERE name = ?");
             pstmt.setString(1, to);
+            pstmt.setString(2, from);
             if(pstmt.executeUpdate() > 0){
+                logger.log(Level.INFO, "Success: " + from + " > " + to);
                 return true;
             }
         }
