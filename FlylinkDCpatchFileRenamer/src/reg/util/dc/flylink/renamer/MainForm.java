@@ -118,7 +118,7 @@ public class MainForm extends javax.swing.JFrame
         btnRenameInDb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("v0.1 - Патч переименования путей для FlylinkDC++");
+        setTitle("v0.1.1 - Патч переименования путей для FlylinkDC++");
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
@@ -166,7 +166,7 @@ public class MainForm extends javax.swing.JFrame
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleName("v0.1 - Патч переименования путей для FlylinkDC++");
+        getAccessibleContext().setAccessibleName("Патч переименования путей для FlylinkDC++");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
