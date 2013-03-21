@@ -64,7 +64,7 @@ public class Dbase
             pstmt.setString(1, to);
             pstmt.setString(2, from);
             if(pstmt.executeUpdate() > 0){
-                logger.log(Level.INFO, "Success: " + from + " > " + to);
+                logger.log(Level.INFO, "Success: {0} > {1}", new String[]{from, to});
                 return true;
             }
         }
@@ -76,13 +76,28 @@ public class Dbase
     
     /**
      * 
-     * Таблица fly_file - без индекса! Либо модифицируем структуру таблицы, либо мучаемся с уточнением.
+     * Таблица fly_file
      * @param from
      * @param to
      * @return 
      */
-    protected boolean renameFile(String from, String to)
+    protected boolean renameFile(String[] from, String[] to)
     {
+        String sql = "UPDATE fly_file SET name = ? "
+                   + "WHERE dic_path IN(SELECT id FROM fly_path WHERE name = ? LIMIT 1) AND name = ? ";
+        try{
+            PreparedStatement pstmt = db.prepareStatement(sql);
+            pstmt.setString(1, to[1]);
+            pstmt.setString(2, from[0]);
+            pstmt.setString(3, from[1]);
+            if(pstmt.executeUpdate() > 0){
+                logger.log(Level.INFO, "Success: {0}{1} > {2}{3}", new String[]{from[0], from[1], from[0], to[1]});
+                return true;
+            }
+        }
+        catch(Exception e){
+            logger.log(Level.SEVERE, "cannot renamed file '"+ from +"' to '" + to + "'", e);
+        }        
         return false;
     }
     
@@ -97,7 +112,7 @@ public class Dbase
             return false;
         }
         if(from[1].length() > 0){
-            return renameFile(from[1], to[1]);
+            return renameFile(from, to);
         }
         return renamePath(from[0], to[0]);
     }

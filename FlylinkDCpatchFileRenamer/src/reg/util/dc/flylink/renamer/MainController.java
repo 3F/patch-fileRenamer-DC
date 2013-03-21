@@ -82,6 +82,13 @@ public class MainController
                         continue;
                     }
                     
+                    //TODO: изменение файла вместе с путем.
+                    //Изменение только файла, остальное отклоняем.
+                    if(!renFrom[0].contentEquals(renTo[0])){
+                        view.appendListFilesBeforeLine(i, "[ERROR-NEWPATH]: ");
+                        continue;
+                    }                    
+                    
                     if(!db.renamePathOrFile(renFrom, renTo)){
                         view.appendListFilesBeforeLine(i, "[ERROR-DB]: ");
                         continue;
