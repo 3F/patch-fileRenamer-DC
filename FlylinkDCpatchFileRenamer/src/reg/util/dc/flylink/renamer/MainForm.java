@@ -118,11 +118,11 @@ public class MainForm extends javax.swing.JFrame
         btnRenameInDb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Патч переименования путей для FlylinkDC++");
+        setTitle("v0.1 - Патч переименования путей для FlylinkDC++");
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
-        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n\n#Примеры:\n\n  Директории:\n     # D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n     # D:/folder 2/             > E:/Movies/\n\n  Файлы:\n    # E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n    # e:/dir1/175.png     > f:/bigcat.png\n    # e:\\dir1\\header       > f:\\header.cfg\n\nПометки о выполнении:\n   [OK]:         Успешно выполнено текущая строка\n   [ERROR-???]:  Неправильный формат текущей строки");
+        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n\n#Примеры:\n\n  Директории:\n     # D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n     # D:/folder 2/             > E:/Movies/\n\n  Файлы:\n    # E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n    # e:/dir1/175.png     > f:/bigcat.png                   # Временно заглушка: ERROR-NEWPATH\n    # e:\\dir1\\header       > f:\\header.cfg                  # Временно заглушка: ERROR-NEWPATH\n\nПометки о выполнении:\n   [OK]:         Успешно выполнено текущая строка\n   [ERROR-???]:  Неправильный формат текущей строки");
         listFiles.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseReleased(java.awt.event.MouseEvent evt)
@@ -165,6 +165,8 @@ public class MainForm extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("v0.1 - Патч переименования путей для FlylinkDC++");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
