@@ -19,8 +19,8 @@ package reg.util.dc.flylink.renamer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
 import java.util.logging.*;
 
 public class Dbase
@@ -59,6 +59,12 @@ public class Dbase
      */
     protected boolean renamePath(String from, String to)
     {
+        int idNew = getExistIdPath(to);
+        if(idNew > 0){
+            //fix bug #85
+            return moveFilesInNewPath(getExistIdPath(from), idNew);
+        }
+        
         try{
             PreparedStatement pstmt = db.prepareStatement("UPDATE main.fly_path SET name = ? WHERE name = ?");
             pstmt.setString(1, to);
@@ -76,6 +82,28 @@ public class Dbase
     
     /**
      * 
+     * @param idOld - id старого пути из fly_path
+     * @param idNew - id нового пути из fly_path
+     * @return 
+     */
+    private boolean moveFilesInNewPath(int idOld, int idNew)
+    {
+        try{
+            PreparedStatement pstmt = db.prepareStatement("UPDATE fly_file SET dic_path = ? WHERE dic_path = ?");
+            pstmt.setInt(1, idNew);
+            pstmt.setInt(2, idOld);
+            if(pstmt.executeUpdate() > 0){
+                return true;
+            }
+        }
+        catch(Exception e){
+            logger.log(Level.SEVERE, "cannot move file to a new path '"+ idOld +"' - '"+ idNew + "'", e);
+        }        
+        return false;        
+    }
+    
+    /**
+     * 
      * Таблица fly_file
      * @param from
      * @param to
@@ -84,7 +112,7 @@ public class Dbase
     protected boolean renameFile(String[] from, String[] to)
     {
         String sql = "UPDATE fly_file SET name = ? "
-                   + "WHERE dic_path IN(SELECT id FROM fly_path WHERE name = ? LIMIT 1) AND name = ? ";
+                   + "WHERE dic_path = (SELECT id FROM fly_path WHERE name = ? LIMIT 1) AND name = ? ";
         try{
             PreparedStatement pstmt = db.prepareStatement(sql);
             pstmt.setString(1, to[1]);
@@ -99,6 +127,27 @@ public class Dbase
             logger.log(Level.SEVERE, "cannot renamed file '"+ from +"' to '" + to + "'", e);
         }        
         return false;
+    }
+    
+    /**
+     * id существующего пути.
+     * @param path
+     * @return -1 если путь не найден.
+     */
+    protected int getExistIdPath(String path)
+    {
+        try{
+            PreparedStatement pstmt = db.prepareStatement("SELECT id FROM fly_path WHERE name = ?");
+            pstmt.setString(1, path);
+            ResultSet res = pstmt.executeQuery();
+            if(res.next()){
+                return res.getInt(0);
+            }
+        }
+        catch(Exception e){
+            logger.log(Level.SEVERE, "problem with getExistIdPath by path: '"+ path, e);
+        }
+        return -1;
     }
     
     /**
