@@ -86,6 +86,11 @@ public class MainForm extends javax.swing.JFrame
         return listFiles.getLineCount();
     }
     
+    public void renderVersionApp(String v)
+    {
+        this.setTitle(v + " " + this.getTitle());
+    }
+    
     /**
      * Добавляет текст в начало указанной строки.
      * @param n line number
@@ -118,7 +123,7 @@ public class MainForm extends javax.swing.JFrame
         btnRenameInDb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("v0.1.1 - Патч переименования путей для FlylinkDC++");
+        setTitle("Патч переименования путей для FlylinkDC++");
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
