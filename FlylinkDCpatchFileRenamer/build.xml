@@ -11,7 +11,7 @@
     <description>Builds, tests, and runs the project FlylinkDCpatchFileRenamer.</description>
     <import file="nbproject/build-impl.xml"/>
     
-    <property name="version" value="0.2.1"/>
+    <property name="version" value="0.2.2"/>
     <property name="createdBy" value="reg (entry.reg@gmail.com)"/>
     <property name="specificationTitle" value="patch-renamer for FlylinkDC++"/>
     

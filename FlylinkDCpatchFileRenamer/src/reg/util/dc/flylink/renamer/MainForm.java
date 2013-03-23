@@ -34,6 +34,7 @@ public class MainForm extends javax.swing.JFrame
     {
         setLookAndFeel();
         initComponents();
+        listFiles.setComponentPopupMenu(menuMain);
         this.setLocationRelativeTo(null); //to center screen
     }
     
@@ -61,6 +62,11 @@ public class MainForm extends javax.swing.JFrame
     protected void listnerRenameInDb(ActionListener l)
     {
         btnRenameInDb.addActionListener(l);
+    }
+    
+    protected void listnerLogOpen(ActionListener l)
+    {
+        btnLogOpen.addActionListener(l);
     }
     
     /**
@@ -112,6 +118,10 @@ public class MainForm extends javax.swing.JFrame
         }        
     }
     
+    private void listClear()
+    {
+        listFiles.setText("");
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this
@@ -122,14 +132,59 @@ public class MainForm extends javax.swing.JFrame
     private void initComponents()
     {
 
+        menuMain = new javax.swing.JPopupMenu();
+        menuCopy = new javax.swing.JMenuItem();
+        menuCut = new javax.swing.JMenuItem();
+        menuPaste = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        menuClear = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         listFiles = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         btnRenameInDb = new javax.swing.JButton();
-        btnBackupDb = new javax.swing.JButton();
-        btnOpenLog = new javax.swing.JButton();
-        btnClearLog = new javax.swing.JButton();
+        btnLogOpen = new javax.swing.JButton();
         chkReverseRename = new javax.swing.JCheckBox();
+
+        menuCopy.setText("Копировать");
+        menuCopy.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuCopyActionPerformed(evt);
+            }
+        });
+        menuMain.add(menuCopy);
+
+        menuCut.setText("Вырезать");
+        menuCut.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuCutActionPerformed(evt);
+            }
+        });
+        menuMain.add(menuCut);
+
+        menuPaste.setText("Вставить");
+        menuPaste.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuPasteActionPerformed(evt);
+            }
+        });
+        menuMain.add(menuPaste);
+        menuMain.add(jSeparator1);
+
+        menuClear.setText("Очистить");
+        menuClear.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                menuClearActionPerformed(evt);
+            }
+        });
+        menuMain.add(menuClear);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Патч переименования путей для FlylinkDC++");
@@ -143,20 +198,12 @@ public class MainForm extends javax.swing.JFrame
             {
                 listFilesMouseReleased(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                listFilesMouseClicked(evt);
-            }
         });
         jScrollPane1.setViewportView(listFiles);
 
         btnRenameInDb.setText("Переимновать в БД");
 
-        btnBackupDb.setText("Архивация БД");
-
-        btnOpenLog.setText("Открыть лог");
-
-        btnClearLog.setText("Очистить лог");
+        btnLogOpen.setText("Открыть лог");
 
         chkReverseRename.setText("Обратное переименование");
 
@@ -168,21 +215,15 @@ public class MainForm extends javax.swing.JFrame
                 .addComponent(btnRenameInDb)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkReverseRename)
-                .addGap(18, 18, 18)
-                .addComponent(btnBackupDb)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOpenLog)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnClearLog)
-                .addGap(0, 116, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLogOpen)
+                .addGap(0, 350, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnRenameInDb)
-                .addComponent(btnBackupDb)
-                .addComponent(btnOpenLog)
-                .addComponent(btnClearLog)
+                .addComponent(btnLogOpen)
                 .addComponent(chkReverseRename))
         );
 
@@ -206,28 +247,46 @@ public class MainForm extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listFilesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_listFilesMouseClicked
-    {//GEN-HEADEREND:event_listFilesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listFilesMouseClicked
-
     private void listFilesMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_listFilesMouseReleased
     {//GEN-HEADEREND:event_listFilesMouseReleased
-        // TODO add your handling code here:
         if(!firstClickedOnListFiles){
-            listFiles.setText("");
+            listClear();
             firstClickedOnListFiles = true;
-        }        
+        }
     }//GEN-LAST:event_listFilesMouseReleased
 
+    private void menuCopyActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuCopyActionPerformed
+    {//GEN-HEADEREND:event_menuCopyActionPerformed
+        listFiles.copy();
+    }//GEN-LAST:event_menuCopyActionPerformed
+
+    private void menuCutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuCutActionPerformed
+    {//GEN-HEADEREND:event_menuCutActionPerformed
+        listFiles.cut();
+    }//GEN-LAST:event_menuCutActionPerformed
+
+    private void menuPasteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuPasteActionPerformed
+    {//GEN-HEADEREND:event_menuPasteActionPerformed
+        listFiles.paste();
+    }//GEN-LAST:event_menuPasteActionPerformed
+
+    private void menuClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuClearActionPerformed
+    {//GEN-HEADEREND:event_menuClearActionPerformed
+        listClear();
+    }//GEN-LAST:event_menuClearActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBackupDb;
-    private javax.swing.JButton btnClearLog;
-    private javax.swing.JButton btnOpenLog;
+    private javax.swing.JButton btnLogOpen;
     private javax.swing.JButton btnRenameInDb;
     private javax.swing.JCheckBox chkReverseRename;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextArea listFiles;
+    private javax.swing.JMenuItem menuClear;
+    private javax.swing.JMenuItem menuCopy;
+    private javax.swing.JMenuItem menuCut;
+    private javax.swing.JPopupMenu menuMain;
+    private javax.swing.JMenuItem menuPaste;
     // End of variables declaration//GEN-END:variables
 }

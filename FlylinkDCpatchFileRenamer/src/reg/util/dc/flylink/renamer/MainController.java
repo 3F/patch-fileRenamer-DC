@@ -18,9 +18,6 @@ package reg.util.dc.flylink.renamer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.InputStream;
-import java.util.jar.Attributes;
-import java.util.jar.Manifest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +34,7 @@ public class MainController
     {
         view = frm;
         view.listnerRenameInDb(new actionRenameInDb());
+        view.listnerLogOpen(new actionLogOpen());
         view.renderVersionApp(FilesRenamer.class.getPackage().getSpecificationVersion());
         view.setVisible(true);
     }
@@ -109,4 +107,13 @@ public class MainController
             }
         }
     }
+    
+    private class actionLogOpen implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            LogOperation.openAll();
+        }
+    } 
 }
