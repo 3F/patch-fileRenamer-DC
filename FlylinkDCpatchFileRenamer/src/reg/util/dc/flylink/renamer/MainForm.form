@@ -53,7 +53,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="&#x424;&#x43e;&#x440;&#x43c;&#x430;&#x442;:&#xa;&#x421;&#x442;&#x430;&#x440;&#x44b;&#x439; &#x43f;&#x443;&#x442;&#x44c; &gt; &#x41d;&#x43e;&#x432;&#x44b;&#x439; &#x41f;&#x443;&#x442;&#x44c;&#xa;&#x421;&#x442;&#x430;&#x440;&#x44b;&#x439; &#x43f;&#x443;&#x442;&#x44c; &gt; &#x41d;&#x43e;&#x432;&#x44b;&#x439; &#x41f;&#x443;&#x442;&#x44c;&#xa;...&#xa;&#xa;#&#x41f;&#x440;&#x438;&#x43c;&#x435;&#x440;&#x44b;:&#xa;&#xa;  &#x414;&#x438;&#x440;&#x435;&#x43a;&#x442;&#x43e;&#x440;&#x438;&#x438;:&#xa;     # D:\u005cfolder 1\u005csub1\u005c   &gt; D:\u005cPicture\u005cCars\u005c&#xa;     # D:/folder 2/             &gt; E:/Movies/&#xa;&#xa;  &#x424;&#x430;&#x439;&#x43b;&#x44b;:&#xa;    # E:\u005cdir1\u005cw1.mkv      &gt; E:\u005cdir1\u005cwarm water.mkv&#xa;    # e:/dir1/175.png     &gt; f:/bigcat.png                   # &#x412;&#x440;&#x435;&#x43c;&#x435;&#x43d;&#x43d;&#x43e; &#x437;&#x430;&#x433;&#x43b;&#x443;&#x448;&#x43a;&#x430;: ERROR-NEWPATH&#xa;    # e:\u005cdir1\u005cheader       &gt; f:\u005cheader.cfg                  # &#x412;&#x440;&#x435;&#x43c;&#x435;&#x43d;&#x43d;&#x43e; &#x437;&#x430;&#x433;&#x43b;&#x443;&#x448;&#x43a;&#x430;: ERROR-NEWPATH&#xa;&#xa;&#x41f;&#x43e;&#x43c;&#x435;&#x442;&#x43a;&#x438; &#x43e; &#x432;&#x44b;&#x43f;&#x43e;&#x43b;&#x43d;&#x435;&#x43d;&#x438;&#x438;:&#xa;   [OK]:         &#x423;&#x441;&#x43f;&#x435;&#x448;&#x43d;&#x43e; &#x432;&#x44b;&#x43f;&#x43e;&#x43b;&#x43d;&#x435;&#x43d;&#x43e; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x430;&#x44f; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x430;&#xa;   [ERROR-???]:  &#x41d;&#x435;&#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x439; &#x444;&#x43e;&#x440;&#x43c;&#x430;&#x442; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x435;&#x439; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x438;" containsInvalidXMLChars="true"/>
+            <Property name="text" type="java.lang.String" value="&#x424;&#x43e;&#x440;&#x43c;&#x430;&#x442;:&#xa;&#x421;&#x442;&#x430;&#x440;&#x44b;&#x439; &#x43f;&#x443;&#x442;&#x44c; &gt; &#x41d;&#x43e;&#x432;&#x44b;&#x439; &#x41f;&#x443;&#x442;&#x44c;&#xa;&#x421;&#x442;&#x430;&#x440;&#x44b;&#x439; &#x43f;&#x443;&#x442;&#x44c; &gt; &#x41d;&#x43e;&#x432;&#x44b;&#x439; &#x41f;&#x443;&#x442;&#x44c;&#xa;...&#xa;&#xa;#&#x41f;&#x440;&#x438;&#x43c;&#x435;&#x440;&#x44b;:&#xa;&#xa;  &#x414;&#x438;&#x440;&#x435;&#x43a;&#x442;&#x43e;&#x440;&#x438;&#x438;:&#xa;     # D:\u005cfolder 1\u005csub1\u005c   &gt; D:\u005cPicture\u005cCars\u005c&#xa;     # D:/folder 2/             &gt; E:/Movies/&#xa;&#xa;  &#x424;&#x430;&#x439;&#x43b;&#x44b;:&#xa;    # E:\u005cdir1\u005cw1.mkv      &gt; E:\u005cdir1\u005cwarm water.mkv&#xa;    # e:/dir1/175.png     &gt; f:/bigcat.png   &#xa;    # e:\u005cdir1\u005cheader       &gt; f:\u005cheader.cfg  &#xa;&#xa;&#x41f;&#x43e;&#x43c;&#x435;&#x442;&#x43a;&#x438; &#x43e; &#x432;&#x44b;&#x43f;&#x43e;&#x43b;&#x43d;&#x435;&#x43d;&#x438;&#x438;:&#xa;   [OK]:         &#x423;&#x441;&#x43f;&#x435;&#x448;&#x43d;&#x43e; &#x432;&#x44b;&#x43f;&#x43e;&#x43b;&#x43d;&#x435;&#x43d;&#x43e; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x430;&#x44f; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x430;&#xa;   [ERROR-???]:  &#x41d;&#x435;&#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x439; &#x444;&#x43e;&#x440;&#x43c;&#x430;&#x442; &#x442;&#x435;&#x43a;&#x443;&#x449;&#x435;&#x439; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x438;" containsInvalidXMLChars="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listFilesMouseReleased"/>
@@ -69,13 +69,27 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="btnRenameInDb" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="626" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="chkReverseRename" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnBackupDb" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnOpenLog" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnClearLog" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="116" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="btnRenameInDb" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnRenameInDb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBackupDb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOpenLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnClearLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkReverseRename" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -83,6 +97,26 @@
         <Component class="javax.swing.JButton" name="btnRenameInDb">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x41f;&#x435;&#x440;&#x435;&#x438;&#x43c;&#x43d;&#x43e;&#x432;&#x430;&#x442;&#x44c; &#x432; &#x411;&#x414;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnBackupDb">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x410;&#x440;&#x445;&#x438;&#x432;&#x430;&#x446;&#x438;&#x44f; &#x411;&#x414;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnOpenLog">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x41e;&#x442;&#x43a;&#x440;&#x44b;&#x442;&#x44c; &#x43b;&#x43e;&#x433;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnClearLog">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x41e;&#x447;&#x438;&#x441;&#x442;&#x438;&#x442;&#x44c; &#x43b;&#x43e;&#x433;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chkReverseRename">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x41e;&#x431;&#x440;&#x430;&#x442;&#x43d;&#x43e;&#x435; &#x43f;&#x435;&#x440;&#x435;&#x438;&#x43c;&#x435;&#x43d;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x435;"/>
           </Properties>
         </Component>
       </SubComponents>

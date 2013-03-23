@@ -91,6 +91,11 @@ public class MainForm extends javax.swing.JFrame
         this.setTitle(v + " " + this.getTitle());
     }
     
+    public boolean isCheckReverseRename()
+    {
+        return chkReverseRename.isSelected();
+    }
+    
     /**
      * Добавляет текст в начало указанной строки.
      * @param n line number
@@ -121,13 +126,17 @@ public class MainForm extends javax.swing.JFrame
         listFiles = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         btnRenameInDb = new javax.swing.JButton();
+        btnBackupDb = new javax.swing.JButton();
+        btnOpenLog = new javax.swing.JButton();
+        btnClearLog = new javax.swing.JButton();
+        chkReverseRename = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Патч переименования путей для FlylinkDC++");
 
         listFiles.setColumns(20);
         listFiles.setRows(5);
-        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n\n#Примеры:\n\n  Директории:\n     # D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n     # D:/folder 2/             > E:/Movies/\n\n  Файлы:\n    # E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n    # e:/dir1/175.png     > f:/bigcat.png                   # Временно заглушка: ERROR-NEWPATH\n    # e:\\dir1\\header       > f:\\header.cfg                  # Временно заглушка: ERROR-NEWPATH\n\nПометки о выполнении:\n   [OK]:         Успешно выполнено текущая строка\n   [ERROR-???]:  Неправильный формат текущей строки");
+        listFiles.setText("Формат:\nСтарый путь > Новый Путь\nСтарый путь > Новый Путь\n...\n\n#Примеры:\n\n  Директории:\n     # D:\\folder 1\\sub1\\   > D:\\Picture\\Cars\\\n     # D:/folder 2/             > E:/Movies/\n\n  Файлы:\n    # E:\\dir1\\w1.mkv      > E:\\dir1\\warm water.mkv\n    # e:/dir1/175.png     > f:/bigcat.png   \n    # e:\\dir1\\header       > f:\\header.cfg  \n\nПометки о выполнении:\n   [OK]:         Успешно выполнено текущая строка\n   [ERROR-???]:  Неправильный формат текущей строки");
         listFiles.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseReleased(java.awt.event.MouseEvent evt)
@@ -143,17 +152,38 @@ public class MainForm extends javax.swing.JFrame
 
         btnRenameInDb.setText("Переимновать в БД");
 
+        btnBackupDb.setText("Архивация БД");
+
+        btnOpenLog.setText("Открыть лог");
+
+        btnClearLog.setText("Очистить лог");
+
+        chkReverseRename.setText("Обратное переименование");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRenameInDb)
-                .addGap(0, 626, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkReverseRename)
+                .addGap(18, 18, 18)
+                .addComponent(btnBackupDb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOpenLog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClearLog)
+                .addGap(0, 116, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRenameInDb)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnRenameInDb)
+                .addComponent(btnBackupDb)
+                .addComponent(btnOpenLog)
+                .addComponent(btnClearLog)
+                .addComponent(chkReverseRename))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,7 +221,11 @@ public class MainForm extends javax.swing.JFrame
     }//GEN-LAST:event_listFilesMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackupDb;
+    private javax.swing.JButton btnClearLog;
+    private javax.swing.JButton btnOpenLog;
     private javax.swing.JButton btnRenameInDb;
+    private javax.swing.JCheckBox chkReverseRename;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea listFiles;

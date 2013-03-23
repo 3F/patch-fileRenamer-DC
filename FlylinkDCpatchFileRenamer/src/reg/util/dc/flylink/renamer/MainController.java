@@ -69,8 +69,15 @@ public class MainController
                     
                     path = ListGetting.get2Path(text);
                     try{
-                        renFrom = ListGetting.splitPath(path[0]);
-                        renTo   = ListGetting.splitPath(path[1]);
+                        // #87
+                        if(!view.isCheckReverseRename()){
+                            renFrom = ListGetting.splitPath(path[0]);
+                            renTo   = ListGetting.splitPath(path[1]);
+                        }
+                        else{
+                            renTo   = ListGetting.splitPath(path[0]);
+                            renFrom = ListGetting.splitPath(path[1]);
+                        }
                     }
                     catch(Exception ex){
                         view.appendListFilesBeforeLine(i, "[ERROR-PARSE]: ");
