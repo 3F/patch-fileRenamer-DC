@@ -19,7 +19,7 @@ package reg.util.dc.flylink.renamer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FilesGetting
+public class ListGetting
 {
     /**
      * Проверка формата строки

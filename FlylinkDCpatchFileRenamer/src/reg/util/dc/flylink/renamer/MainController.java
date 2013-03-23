@@ -45,7 +45,7 @@ public class MainController
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            Dbase db = new Dbase(null);
+            ChangeData db = new ChangeData(null);
             if(!db.connect()){
                 view.appendListFilesBeforeLine(0, "*[CONNECTED FAILED] place program into flylinkdc folder"
                         + " or try close another program (if used exclusive lock)\n\n");
@@ -58,15 +58,15 @@ public class MainController
                 for(int i = 0; i < count; i++){
                     String text = view.getLineFromListFiles(i);
                     
-                    if(!FilesGetting.verifyLine(text)){
+                    if(!ListGetting.verifyLine(text)){
                         view.appendListFilesBeforeLine(i, "[ERROR-FORMAT]: ");
                         continue;
                     }
                     
-                    path = FilesGetting.get2Path(text);
+                    path = ListGetting.get2Path(text);
                     try{
-                        renFrom = FilesGetting.splitPath(path[0]);
-                        renTo   = FilesGetting.splitPath(path[1]);
+                        renFrom = ListGetting.splitPath(path[0]);
+                        renTo   = ListGetting.splitPath(path[1]);
                     }
                     catch(Exception ex){
                         view.appendListFilesBeforeLine(i, "[ERROR-PARSE]: ");
@@ -82,14 +82,7 @@ public class MainController
                         continue;
                     }
                     
-                    //TODO: изменение файла вместе с путем.
-                    //Изменение только файла для пути+файл, остальное отклоняем.
-                    if(renFrom[1].length() > 0 && !renFrom[0].contentEquals(renTo[0])){
-                        view.appendListFilesBeforeLine(i, "[ERROR-NEWPATH]: ");
-                        continue;
-                    }                    
-                    
-                    if(!db.renamePathOrFile(renFrom, renTo)){
+                    if(!db.rename(renFrom, renTo)){
                         view.appendListFilesBeforeLine(i, "[ERROR-DB]: ");
                         continue;
                     }
